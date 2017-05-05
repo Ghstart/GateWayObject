@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'GateWayObject_Example' do
+  pod 'GateWayObject', :path => '../'
+
+  target 'GateWayObject_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
