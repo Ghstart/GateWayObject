@@ -7,12 +7,28 @@
 //
 
 #import "GhAppDelegate.h"
+#import "GateWayObject.h"
+
+#define carownerRole     @"carownerRole"
+#define driverRole       @"driverRole"
 
 @implementation GhAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    [GateWayObject sharedInstanceWithDefaultURL:@"https://cz.redlion56.com/gwcz/"
+                                    ReflectURLS:@{
+                                                  @"login": @"https://login.redlion56.com/gwlogin/user/login.do",
+                                                  @"logout": @"https://cz.redlion56.com/gwcz/uic/user/logout.do",
+                                                  @"pay": @"https://pay.com/xxx/aa"
+                                                  }];
+    [[GateWayObject currentGateWay] setGateWayURL:@"https://cz.redlion56.com/gwcz/"
+                                     forKeyObject:carownerRole];
+    [[GateWayObject currentGateWay] setGateWayURL:@"https://sj.redlion56.com/gwsj/"
+                                     forKeyObject:driverRole];
+
+    
     return YES;
 }
 

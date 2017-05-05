@@ -1,11 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Gh View Controller-->
         <scene sceneID="wQg-tq-qST">
             <objects>
                 <viewController id="whP-gf-Uak" customClass="GhViewController" sceneMemberID="viewController">
@@ -14,14 +19,67 @@
                         <viewControllerLayoutGuide type="bottom" id="Mvr-aV-6Um"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRQ-mP-bFY">
+                                <rect key="frame" x="126" y="318" width="123" height="30"/>
+                                <state key="normal" title="Show CurrentURL"/>
+                                <connections>
+                                    <action selector="showCurrentURL:" destination="whP-gf-Uak" eventType="touchUpInside" id="kJI-3F-v7l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcu-Cb-22J">
+                                <rect key="frame" x="16" y="433" width="95" height="30"/>
+                                <state key="normal" title="SwichCarRole"/>
+                                <connections>
+                                    <action selector="swichCarRole:" destination="whP-gf-Uak" eventType="touchUpInside" id="XIG-dD-7ld"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3t-Cv-mj9">
+                                <rect key="frame" x="246" y="433" width="113" height="30"/>
+                                <state key="normal" title="SwichDriverRole"/>
+                                <connections>
+                                    <action selector="swichDriverRole:" destination="whP-gf-Uak" eventType="touchUpInside" id="G9p-Bi-Xvs"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="pay" borderStyle="roundedRect" placeholder="Input RelativeURL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DMs-lm-dhR">
+                                <rect key="frame" x="94" y="234" width="187" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="187" id="gcj-7K-S27"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can type: login/logout/pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osa-Mp-ONX">
+                                <rect key="frame" x="71" y="182" width="232" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="rRQ-mP-bFY" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="6ia-Vt-nDi"/>
+                            <constraint firstItem="DMs-lm-dhR" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="L3d-sq-8sc"/>
+                            <constraint firstItem="h3t-Cv-mj9" firstAttribute="top" secondItem="rRQ-mP-bFY" secondAttribute="bottom" constant="85" id="LIm-BZ-CbQ"/>
+                            <constraint firstItem="Osa-Mp-ONX" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="Pzm-cs-eXB"/>
+                            <constraint firstItem="rRQ-mP-bFY" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" id="VwF-Fj-7BQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="h3t-Cv-mj9" secondAttribute="trailing" id="ff0-GV-V2L"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="bcu-Cb-22J" secondAttribute="leading" id="gvB-2P-l7l"/>
+                            <constraint firstItem="rRQ-mP-bFY" firstAttribute="top" secondItem="DMs-lm-dhR" secondAttribute="bottom" constant="54" id="iem-Bp-wRp"/>
+                            <constraint firstItem="DMs-lm-dhR" firstAttribute="top" secondItem="Osa-Mp-ONX" secondAttribute="bottom" constant="31" id="oLf-As-wCz"/>
+                            <constraint firstItem="bcu-Cb-22J" firstAttribute="top" secondItem="rRQ-mP-bFY" secondAttribute="bottom" constant="85" id="xO0-xM-hBj"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="relativeURL" destination="DMs-lm-dhR" id="4Q7-4B-7zz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="433"/>
+            <point key="canvasLocation" x="104.8" y="429.53523238380814"/>
         </scene>
     </scenes>
 </document>

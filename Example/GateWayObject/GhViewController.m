@@ -7,23 +7,32 @@
 //
 
 #import "GhViewController.h"
+#import "GateWayObject.h"
 
 @interface GhViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *relativeURL;
 
 @end
 
 @implementation GhViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (IBAction)showCurrentURL:(id)sender {
+    NSString *relative = (self.relativeURL.text == nil || [self.relativeURL.text isEqualToString:@""]) ? @"None" : self.relativeURL.text;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reques URL is:"
+                                                    message:[[GateWayObject currentGateWay] currentURLBaseOnRelativeURL:relative]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)swichCarRole:(id)sender {
+    [[GateWayObject currentGateWay] swichGateWayBaseOn:@"carownerRole"];
+}
+
+- (IBAction)swichDriverRole:(id)sender {
+   [[GateWayObject currentGateWay] swichGateWayBaseOn:@"driverRole"];
 }
 
 @end
