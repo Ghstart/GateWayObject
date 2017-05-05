@@ -1,0 +1,16 @@
+PODS:
+  - GateWayObject (0.1.0)
+
+DEPENDENCIES:
+  - GateWayObject (from `../`)
+
+EXTERNAL SOURCES:
+  GateWayObject:
+    :path: ../
+
+SPEC CHECKSUMS:
+  GateWayObject: 45bfe967ecee7ab068bfb81e466e72510dbe2514
+
+PODFILE CHECKSUM: 769539dd7a8ea7312ce254f62e3ce697f8942b29
+
+COCOAPODS: 1.1.1

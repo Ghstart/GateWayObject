@@ -1,0 +1,6 @@
+framework module GateWayObject {
+  umbrella header "GateWayObject-umbrella.h"
+
+  export *
+  module * { export * }
+}
