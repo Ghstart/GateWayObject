@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString     *currentRelateURL;
 @property (nonatomic, strong) NSString     *defaultURL;
 @property (nonatomic, strong) NSDictionary *defaultURLSReflectDatas;
+@property (nonatomic, strong) NSRecursiveLock *lock;
 
 @end
 
@@ -71,28 +72,32 @@ static GateWayObject *gateWayObject = nil;
 }
 
 - (void)setGateWayURL:(NSString *)url forKeyObject:(id)keyObject {
-    
-    if (keyObject != nil && url != nil && ![url isEqualToString:@""]) {
-        
-        NSMutableArray *tempSetDatas;
-        if ([GateWayObject currentGateWay].config == nil ||
-            [GateWayObject currentGateWay].config.count == 0) {
+    [self.lock lock];
+        if (keyObject != nil && url != nil && ![url isEqualToString:@""]) {
             
-            tempSetDatas = [NSMutableArray new];
-        } else {
+            NSMutableArray *tempSetDatas;
+            if ([GateWayObject currentGateWay].config == nil ||
+                [GateWayObject currentGateWay].config.count == 0) {
+                
+                tempSetDatas = [NSMutableArray new];
+            } else {
+                
+                tempSetDatas = [[GateWayObject currentGateWay].config mutableCopy];
+            }
             
-            tempSetDatas = [[GateWayObject currentGateWay].config mutableCopy];
+            NSMutableDictionary *tempDicCollection = [NSMutableDictionary new];
+
+                [tempDicCollection setObject:url forKey:keyObject];
+
+            if (tempDicCollection) [tempSetDatas addObject:tempDicCollection];
+            if (tempSetDatas) [GateWayObject currentGateWay].config = [tempSetDatas copy];
         }
-        
-        NSMutableDictionary *tempDicCollection = [NSMutableDictionary new];
-        [tempDicCollection setObject:url forKey:keyObject];
-        if (tempDicCollection) [tempSetDatas addObject:tempDicCollection];
-        if (tempSetDatas) [GateWayObject currentGateWay].config = [tempSetDatas copy];
-    }
+    [self.lock unlock];
 }
 
 - (void)setDefaultRelativeURL:(NSString *)relativeURL fullURL:(NSString *)fullURL {
     
+    [self.lock lock];
     NSAssert(relativeURL != nil && ![relativeURL isEqualToString:@""], @"相对路径不能为空");
     NSAssert(fullURL != nil && ![fullURL isEqualToString:@""], @"全路径不能为空");
     NSAssert([fullURL hasPrefix:@"http"] || [fullURL hasPrefix:@"https"], @"全路径非法");
@@ -106,6 +111,7 @@ static GateWayObject *gateWayObject = nil;
     
     [tempReflectURLCollectionDatas setObject:fullURL forKey:relativeURL];
     [GateWayObject currentGateWay].defaultURLSReflectDatas = [tempReflectURLCollectionDatas copy];
+    [self.lock unlock];
 }
 
 #pragma mark - Getter Methods
@@ -166,6 +172,15 @@ static GateWayObject *gateWayObject = nil;
     
     return [[NSString stringWithFormat:@"%@%@",[GateWayObject currentGateWay].currentRelateURL,url] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return @"";
+}
+
+#pragma mark - Getter Methods
+
+- (NSRecursiveLock *)lock {
+    if (_lock == nil) {
+        _lock = [NSRecursiveLock new];
+    }
+    return _lock;
 }
 
 
